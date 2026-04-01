@@ -1,4 +1,4 @@
-package com.indicesnodoserecursao;
+package com.indicesnodoserecursao.jogodearranjo;
 
 public class GameEntry {
     private String name;

@@ -1,19 +1,19 @@
-package com.indicesnodoserecursao;
+package com.indicesnodoserecursao.jogodearranjo;
 
 public class Scores {
-    private static final int MAX_SIZE = 10;
+    private static final int MAX_SCORES = 10;
     private GameEntry[] entries;
     private int numEntries;
 
     public Scores() {
-        entries = new GameEntry[MAX_SIZE];
+        entries = new GameEntry[MAX_SCORES];
         numEntries = 0;
     }
 
     public void add(GameEntry e) {
         int newScore = e.getScore();
 
-        if (numEntries == MAX_SIZE) {
+        if (numEntries == MAX_SCORES) {
             if (newScore <= entries[numEntries - 1].getScore()) {
                 return;
             }
@@ -23,15 +23,14 @@ public class Scores {
 
         int i = numEntries - 1;
 
-        for (; (i >= 1) && (newScore > entries[i - 1].getScore()); i--) {
+        for (; (i >= 0) && (newScore > entries[i - 1].getScore()); i--) {
             entries[i] = entries[i - 1];
         }
-
         entries[i] = e;
     }
 
-   public GameEntry remove(int i) throws IndexOutOfBoundsException {
-        if((i < 0) || (i >= numEntries)) {
+    public GameEntry remove(int i) {
+        if (i < 0 || i >= numEntries) {
             throw new IndexOutOfBoundsException("Invalid index: " + i);
         }
 
@@ -40,15 +39,11 @@ public class Scores {
         for (int j = i; j < numEntries - 1; j++) {
             entries[j] = entries[j + 1];
         }
-
         entries[numEntries - 1] = null;
         numEntries--;
 
         return temp;
-
-
-        
-   }
+    }
 
     @Override
     public String toString() {
@@ -58,9 +53,10 @@ public class Scores {
             if (i > 0) {
                 s += ", ";
             }
+
             s += entries[i];
         }
-        s += "]";
-        return s;
+
+        return s + "]";
     }
 }
