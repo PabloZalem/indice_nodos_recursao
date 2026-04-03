@@ -19,9 +19,6 @@ public class GameEntry {
 
     @Override
     public String toString() {
-        return "GameEntry{" +
-                "name='" + name + '\'' +
-                ", score=" + score +
-                '}';
+        return "Nome: " + name + ", Score: " + score;
     }
 }

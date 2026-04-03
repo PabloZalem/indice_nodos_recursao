@@ -1,20 +1,20 @@
 package com.indicesnodoserecursao.jogodearranjo;
 
 public class Scores {
-    private static final int MAX_SCORES = 10;
+    private static final int MAX_STORE = 10;
     private GameEntry[] entries;
     private int numEntries;
 
     public Scores() {
-        entries = new GameEntry[MAX_SCORES];
+        entries = new GameEntry[MAX_STORE];
         numEntries = 0;
     }
 
-    public void add(GameEntry e) {
-        int newScore = e.getScore();
+    public void add(GameEntry entry) {
+        int newScore = entry.getScore();
 
-        if (numEntries == MAX_SCORES) {
-            if (newScore <= entries[numEntries - 1].getScore()) {
+        if(numEntries == MAX_STORE) {
+            if (newScore <= entries[numEntries-1].getScore()) {
                 return;
             }
         } else {
@@ -23,21 +23,21 @@ public class Scores {
 
         int i = numEntries - 1;
 
-        for (; (i >= 0) && (newScore > entries[i - 1].getScore()); i--) {
-            entries[i] = entries[i - 1];
+        for(; (i >= 1) && (newScore > entries[i-1].getScore()); i--) {
+            entries[i] = entries[i-1];
         }
-        entries[i] = e;
+        entries[i] = entry;
     }
 
     public GameEntry remove(int i) {
-        if (i < 0 || i >= numEntries) {
+        if(i < 0 || i >= numEntries) {
             throw new IndexOutOfBoundsException("Invalid index: " + i);
         }
 
         GameEntry temp = entries[i];
 
-        for (int j = i; j < numEntries - 1; j++) {
-            entries[j] = entries[j + 1];
+        for(int j = i; j < numEntries - 1; j++) {
+            entries[j] = entries[j+1];
         }
         entries[numEntries - 1] = null;
         numEntries--;
@@ -49,14 +49,14 @@ public class Scores {
     public String toString() {
         String s = "[";
 
-        for (int i = 0; i < numEntries; i++) {
-            if (i > 0) {
+        for(int i = 0; i < numEntries; i++) {
+            if (i >  0) {
                 s += ", ";
             }
 
             s += entries[i];
         }
-
-        return s + "]";
+        s += "]";
+        return s;
     }
 }
