@@ -29,4 +29,8 @@ public class SLinkedList {
         tail = value;
         size++;
     }
+
+    public void deleteInsertionFirst() {
+        
+    }
 }
