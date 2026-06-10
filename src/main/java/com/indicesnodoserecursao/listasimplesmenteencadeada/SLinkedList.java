@@ -31,6 +31,12 @@ public class SLinkedList {
     }
 
     public void deleteInsertionFirst() {
-        
+        if(head == null){
+            throw new RuntimeException("Lista Vazia");
+        }
+        tail = head;
+        head = head.getNext();
+        tail.setNext(null);
+        size--;
     }
 }
